@@ -1,1 +1,1 @@
-# EmployeeManager
+# React Native Exercise with Firebase

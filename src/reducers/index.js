@@ -8,9 +8,11 @@
 import { combineReducers } from 'redux';
 import AuthReducer from './AuthReducer';
 import EmployeeReducer from './EmployeeReducer';
+import DirectoryReducer from './DirectoryReducer';
 
 export default combineReducers({
     auth: AuthReducer,
-    employee: EmployeeReducer
+    employee: EmployeeReducer,
+    directory: DirectoryReducer
 });
 
