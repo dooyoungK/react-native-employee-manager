@@ -1,31 +1,36 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { employeeUpdate, employeeCreate } from '../../actions';
+import _ from 'lodash';
 import { Card, CardSection, Button } from '../common';
+import { employeeUpdate, employeeSave } from '../../actions';
 import EmployeeForm from './EmployeeForm';
 
-//Make Reusable for creating also editing.
-class EmployeeCreate extends Component {
-    onButtonPress() {
-        const { name, phone, shift } = this.props;
+class EmployeeEdit extends Component {
+    componentWillMount() {
+        _.each(this.props.employee, (value, prop) => {
+            this.props.employeeUpdate({ prop, value });
+        });
+    }
 
-        this.props.employeeCreate({ name, phone, shift: shift || 'Monday' });
+    onButtonPress() {
+        const { name, phone, shift, employee } = this.props;
+        console.log(employee);
+        this.props.employeeSave({ name, phone, shift, uid: employee.uid });
     }
 
     render() {
         return (
             <Card>
-                <EmployeeForm {...this.props} />
+                <EmployeeForm />
                 <CardSection>
                     <Button onPress={this.onButtonPress.bind(this)}>
-                        Create
+                        Save Changes
                     </Button>
                 </CardSection>
             </Card>
         );
     }
 }
-
 
 const mapStateToProps = (state) => {
     const { name, phone, shift } = state.employee;
@@ -35,5 +40,5 @@ const mapStateToProps = (state) => {
 
 export default connect(mapStateToProps, {
     employeeUpdate,
-    employeeCreate
-})(EmployeeCreate);
+    employeeSave
+})(EmployeeEdit);
