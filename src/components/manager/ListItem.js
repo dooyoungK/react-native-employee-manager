@@ -16,7 +16,6 @@ class ListItem extends Component {
 
     render() {
         const { name } = this.props.employee;
-
         return (
             <TouchableWithoutFeedback onPress={this.onRowPress.bind(this)}>
                 <View>
