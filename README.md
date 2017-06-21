@@ -1,5 +1,5 @@
 # Employee Manager
-===========
+-----
 
 Employee Manager is a simple React Native application to exercise how to implement effectively React Redux and Firebase.
 
